@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Chat UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .chat-container {
+            display: flex;
+            height: 80vh;
+            width: 90vw; /* Increased width */
+            border-radius: 15px;
+            overflow: hidden;
+            background: linear-gradient(145deg, #2f2b5a, #53399e);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .nav-sidebar {
+            width: 50px;
+            background-color: #2a2a2a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .nav-sidebar .nav-item {
+            margin: 15px 0;
+            cursor: pointer;
+        }
+
+        .nav-sidebar .nav-item i {
+            font-size: 24px;
+            color: #53399e;
+        }
+
+        .chat-sidebar {
+            width: 25%;
+            background-color: #2a2a2a;
+            padding: 10px;
+            overflow-y: auto;
+            scrollbar-color: #53399e #1e1e1e;
+            scrollbar-width: thin;
+        }
+
+        .chat-sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-sidebar::-webkit-scrollbar-thumb {
+            background-color: #53399e;
+            border-radius: 10px;
+        }
+
+        .chat-sidebar .chat-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #3a3a3a;
+            cursor: pointer;
+        }
+
+        .chat-sidebar .chat-item:hover {
+            background-color: #53399e;
+        }
+
+        .chat-sidebar .chat-item img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .chat-main {
+            width: calc(100% - 50px);
+            margin-left: 50px; /* Adjusted margin to push chat section right */
+            background-color: #1e1e1e;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 10px;
+            background-color: #202225;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header .profile-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-header .profile-info img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .chat-header .profile-info .user-name-status {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header .profile-info .user-status {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            scrollbar-color: #53399e #1e1e1e;
+            scrollbar-width: thin;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: #53399e;
+            border-radius: 10px;
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            position: relative;
+            display: flex;
+        }
+
+        .chat-message .message-content {
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 70%;
+            font-size: 15px;
+            position: relative;
+        }
+
+        .chat-message.sent .message-content {
+            background-color: #2f2b5a;
+            color: #fff;
+            margin-left: auto;
+        }
+
+        .chat-message.received .message-content {
+            background-color: #3a3a3a;
+            color: #fff;
+            margin-right: auto;
+        }
+
+        .chat-message .time {
+            font-size: 12px;
+            color: #ccc;
+            display: block;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background-color: #202225;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .chat-input button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(145deg, #53399e, #2f2b5a);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background: linear-gradient(145deg, #2f2b5a, #53399e);
+        }
+
+        /* Mobile view adjustments */
+        @media (max-width: 768px) {
+            .chat-sidebar {
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 50px;
+                height: 100%;
+                z-index: 10;
+                width: 75%;
+            }
+
+            .chat-sidebar.open {
+                display: block;
+            }
+
+            .chat-main {
+                width: calc(100% - 50px);
+                margin-left: 50px; /* Adjusted margin for mobile view as well */
+            }
+
+            .nav-sidebar {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                z-index: 11;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container animate__animated animate__fadeIn">
+        <div class="nav-sidebar">
+            <div class="nav-item" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-address-book"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-comments-dollar"></i>
+            </div>
+        </div>
+        <div class="chat-sidebar">
+            <div class="chat-item">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div>TechCrunch</div>
+            </div>
+            <div class="chat-item">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div>Marques Brownlee</div>
+            </div>
+            <div class="chat-item">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div>Linus Tech Tips</div>
+            </div>
+            <div class="chat-item">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div>Unbox Therapy</div>
+            </div>
+            <div class="chat-item">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div>Verge Science</div>
+            </div>
+            <div class="chat-item">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div>Android Authority</div>
+            </div>
+            <div class="chat-item">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div>iJustine</div>
+            </div>
+            <div class="chat-item">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div>Dave Lee</div>
+            </div>
+            <div class="chat-item">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div>Jonathan Morrison</div>
+            </div>
+            <div class="chat-item">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div>Linus Tech Tips</div>
+            </div>
+        </div>
+        <div class="chat-main">
+            <div class="chat-header">
+                <div class="profile-info">
+                    <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                    <div class="user-name-status">
+                        <div>Young Money</div>
+                        <div class="user-status">online</div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-danger animate__animated animate__heartBeat">Block User</button>
+                </div>
+            </div>
+            <div class="chat-messages">
+                <div class="chat-message sent animate__animated animate__fadeInUp">
+                    <div class="message-content">
+                        How much performance in your youtube channel
+                        <div class="time">8:43 PM</div>
+                    </div>
+                </div>
+                <div class="chat-message received animate__animated animate__fadeInUp">
+                    <div class="message-content">
+                        I want atleast 10k subscribers to promote my ads on it
+                        <div class="time">8:44 PM</div>
+                    </div>
+                </div>
+                <div class="chat-message sent animate__animated animate__fadeInUp">
+                    <div class="message-content">
+                        I can help you with that, I have 100k subscribers
+                        <div class="time">8:49 PM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Write a message...">
+                <button class="btn btn-primary animate__animated animate__bounce"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.chat-sidebar').classList.toggle('open');
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

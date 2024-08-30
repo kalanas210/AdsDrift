@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="public/vite.svg" />
+    <link rel="stylesheet" href="style-signup2.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose Role - AdsDrift</title>
+  </head>
+  <body class="flex">
+    <div class="left flex flex-col">
+      <div class="logo flex d-none d-lg-block">
+        <a href="/"><img src="public/logo2.png" alt="" /></a>
+        
+      </div>
+      <form action="/" class="flex flex-col">
+        <h1>Sign up</h1>
+        <input type="file" id="fileupload" hidden />
+        <div class="upload-cont">
+          <div class="fileupload-title flex flex-col">
+            <h3>Upload a picture</h3>
+            <p>Upload a picture to display as your profile pic.</p>
+          </div>
+          <label for="fileupload" class="fileupload flex flex-col flex-center">
+            <div>
+              <img src="public/upload.svg" alt="" />
+            </div>
+            <span class="fileupload-text"
+              >Click to upload and attach files</span
+            >
+            <p class="fileupload-desc">SVG, PNG, JPG or GIF (max. 800x400px)</p>
+          </label>
+        </div>
+        <div class="person-details flex flex-col">
+          <label>Who are you?*</label>
+          <div class="freelancer flex">
+            <label for="freelancer">
+              <img src="public/shield.svg" class="person-icon" alt="" />I am a
+              Freelancer
+            </label>
+            <input type="radio" name="chooserole" id="freelancer" />
+          </div>
+          <div class="hirer flex">
+            <label for="hirer">
+              <img src="public/user.svg" class="person-icon" alt="" />I am a
+              Publisher
+            </label>
+            <input checked type="radio" name="chooserole" id="hirer" />
+          </div>
+        </div>
+        <div class="form-buttons flex flex-col">
+          <button type="submit" class="next-btn flex flex-center">
+            Finish Sign up
+          </button>
+        </div>
+        <span class="exists"
+          >Already have an account? <a href="/" class="login">Log in</a></span
+        >
+      </form>
+      <footer class="flex">
+        <span class="flex">© AdsDrift 2024</span>
+        <span class="flex"
+          ><img src="public/mail.svg" alt="" /> help@adsdrift.com</span
+        >
+      </footer>
+    </div>
+    <div class="right flex flex-col">
+      <div class="star">
+      <img src="public/stars.svg" alt="" >
+      </div>
+      <h1>Start turning your ideas into reality.</h1>
+      <p class="avatar-title">Start your business with help of GigDrift</p>
+      <div class="avatar-group flex">
+        <img class="avatars" src="public/avatar-group.png" alt="">
+        <div class="rating-cont flex flex-col">
+          <div class="rating-stars flex">
+            <img src="public/star.svg" alt="">
+            <img src="public/star.svg" alt="">
+            <img src="public/star.svg" alt="">
+            <img src="public/star.svg" alt="">
+            <img src="public/star.svg" alt="">
+            <span>5.0</span>
+          </div>
+          <span>from 200+ reviews</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

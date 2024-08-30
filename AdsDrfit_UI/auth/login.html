@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="public/vite.svg" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - AdsDrift</title>
+  </head>
+  <body class="flex">
+    <div class="left flex flex-col">
+      <div class="logo flex d-none d-lg-block">
+        <a href="/"><img src="public/logo2.png" alt="" /></a>
+        
+      </div>
+      
+      <form action="signup2.html" class="signup1 flex flex-col" >
+        <h1>Login</h1>
+        <div style="font-size: 15px;" class="form-inputs">
+      
+          <div class="email flex flex-col">
+            <label for="email*">Email*</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              
+            />
+          </div>
+          <div class="password flex flex-col" style="margin-top: 20px;">
+            <label for="Password*">Password*</label>
+            <input
+              type="text"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+            />
+         
+          </div>
+          <div class="form-buttons flex flex-col" style="margin-top: 20px;">
+            <button type="submit" class="next-btn flex flex-center">
+              Next Step <img src="public/arrow-right.svg" alt="" />
+            </button>
+            <button class="google-btn flex flex-center">
+              <img src="public/google.png" alt="" />Login with google
+            </button>
+          </div>
+        </div>
+      <span class="exists"
+        >Not have an account? <a href="signup.html" class="login">Sign Up</a></span
+      >
+      </form>
+
+      <footer class="flex signup1-footer">
+        <span class="flex" >© Adsdrift 2024</span>
+        <span class="flex" ><img src="public/mail.svg" alt="" /> help@adsdrift.com</span>
+      </footer>
+    </div>
+    <div class="right flex flex-col">
+      <div class="star">
+      <img src="public/stars.svg" alt="" >
+      </div>
+      <h1>Start turning your ideas into reality.</h1>
+      <p class="avatar-title">Start your business with help of GigDrift</p>
+      <div class="avatar-group flex">
+        <img class="avatars" src="public/avatar-group.png" alt="">
+        <div class="rating-cont flex flex-col">
+          <div class="rating-stars flex">
+            <img src="public/star.svg" alt="">
+            <img src="public/star.svg" alt="">
+            <img src="public/star.svg" alt="">
+            <img src="public/star.svg" alt="">
+            <img src="public/star.svg" alt="">
+            <span>5.0</span>
+          </div>
+          <span>from 200+ reviews</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
