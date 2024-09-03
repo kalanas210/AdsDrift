@@ -177,7 +177,7 @@ small {
     top: 0; left: 0; bottom: 0; right: 0;
     height: 70px;
     width: 70px;
-    background: url(auth/shop/assets/img/other/img-loader.png) 50% 50% no-repeat;
+    background: url(shop/assets/img/other/img-loader.png) 50% 50% no-repeat;
 }
 .loader-item img {
     width: 70px;

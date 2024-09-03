@@ -151,19 +151,18 @@ input,
 
 .logo {
   align-items: center;
-  gap: 0.1rem;
+  gap: 0.4rem;
   align-items: center;
 }
 
 .logo img {
-  width:9rem;
+  width: 2.3rem;
 }
 
 .logo span {
-
+  font-size: 0.7rem;
   font-weight: 600;
 }
-
 
 footer {
   justify-content: space-between;
